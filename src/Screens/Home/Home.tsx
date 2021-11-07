@@ -95,15 +95,19 @@ const AnimationSpan = styled.span<{ delay: number }>`
 	animation-name: ${FadeInTopToBottom};
 	animation-duration: 0.7s;
 	animation-delay: ${(props) => {
-		console.log(props.delay);
 		return `${props.delay / 15}s`;
 	}};
+	animation-fill-mode: both;
+	opacity: 0;
 `;
 
 const SubText = styled.p`
 	font-size: ${(props) => props.theme.fontSizeXL};
 	animation-name: ${FadeIn};
-	animation-duration: 1s;
+	animation-duration: 2s;
+	animation-delay: 1s;
+	animation-fill-mode: both;
+	opacity: 0;
 `;
 
 const AboutSection = styled.article`
@@ -115,6 +119,8 @@ const Home = () => {
 	const [currentPosition, setCurrentPosition] = useState<"left" | "right" | "">(
 		""
 	);
+	const [textRender, setTextRender] = useState(false);
+
 	type SwiperArrTypes = {
 		src: string;
 		alt: string;
