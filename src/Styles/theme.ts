@@ -21,7 +21,7 @@ export const commonTheme: DefaultTheme = {
 export const GlobalStyles = createGlobalStyle`
 
   body{
-    background-color:${(props) => props.theme.black};
+    background-color:#252825;
     font-family: 'Noto Sans KR', sans-serif;  
   }
 
