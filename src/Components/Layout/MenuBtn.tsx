@@ -75,6 +75,12 @@ interface MenuBtnProps {
 }
 const MenuBtn: React.FC<MenuBtnProps> = ({ menuOpen, setMenuOpen }) => {
 	const onMenuClick = () => {
+		if (menuOpen) {
+			setTimeout(() => {
+				setMenuOpen(false);
+			}, 1000);
+			return;
+		}
 		setMenuOpen(!menuOpen);
 	};
 

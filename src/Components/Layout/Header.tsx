@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { FadeIn } from "../../Styles/theme";
 import MenuBtn from "./MenuBtn";
 
 const Container = styled.header`
@@ -46,6 +47,21 @@ const NavUl = styled.ul`
 	}
 `;
 
+const MobileNav = styled.nav<{ menuOpen: boolean }>`
+	display: none;
+	@media screen and (max-width: 1024px) {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		display: block;
+		background-color: ${(props) => props.theme.black};
+		animation: ${FadeIn};
+		animation-duration: 1s;
+	}
+`;
+
 const Header = () => {
 	const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
@@ -74,6 +90,7 @@ const Header = () => {
 					</li>
 				</NavUl>
 			</Nav>
+			{menuOpen && <MobileNav menuOpen={menuOpen} />}
 		</Container>
 	);
 };

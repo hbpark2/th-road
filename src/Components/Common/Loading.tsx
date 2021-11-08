@@ -28,7 +28,7 @@ const Loading = () => {
 	return (
 		<Container>
 			<svg viewBox="0 0 1320 300">
-				<text x="50%" y="50%" dy=".35em" text-anchor="middle">
+				<text x="50%" y="50%" dy=".35em" textAnchor="middle">
 					th-road
 				</text>
 			</svg>

@@ -77,6 +77,10 @@ const SwiperInner = styled.div<{ bg: string; isActive: boolean }>`
 	img {
 		width: 100%;
 	}
+	@media screen and (max-width: 1024px) {
+		background-size: cover;
+		background-position: center center;
+	}
 `;
 
 const MainText = styled.p`
@@ -88,6 +92,9 @@ const MainText = styled.p`
 	margin-bottom: 20px;
 	animation-name: ${FadeIn};
 	animation-duration: 1s;
+	@media screen and (max-width: 1024px) {
+		font-size: 34px;
+	}
 `;
 
 const AnimationSpan = styled.span<{ delay: number }>`
@@ -106,11 +113,18 @@ const AnimationSpan = styled.span<{ delay: number }>`
 
 const SubText = styled.p`
 	font-size: ${(props) => props.theme.fontSizeXL};
+	text-align: center;
 	animation-name: ${FadeIn};
 	animation-duration: 2s;
 	animation-delay: 1s;
 	animation-fill-mode: both;
 	opacity: 0;
+	@media screen and (max-width: 1024px) {
+		padding: 0 10px;
+		line-height: 1.4em;
+		font-size: ${(props) => props.theme.fontSizeL};
+		text-align: center;
+	}
 `;
 
 const AboutSection = styled.article`
