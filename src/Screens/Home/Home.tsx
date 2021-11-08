@@ -61,7 +61,7 @@ const SwiperWrap = styled.article`
 	}
 `;
 
-const SwiperInner = styled.div<{ bg: string }>`
+const SwiperInner = styled.div<{ bg: string; isActive: boolean }>`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -70,7 +70,7 @@ const SwiperInner = styled.div<{ bg: string }>`
 	height: 100vh;
 	background: url(${(props) => props.bg}) no-repeat;
 	background-size: cover;
-	animation-name: ${FadeInZ};
+	animation-name: ${(props) => props.isActive && FadeInZ};
 	animation-duration: 2s;
 	animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 	color: ${(props) => props.theme.white};
@@ -200,16 +200,16 @@ const Home = () => {
 				>
 					{swiperArr.map((item, index) => (
 						<SwiperSlide key={index}>
-							{({ isActive }) =>
-								isActive && (
-									<>
-										<SwiperInner bg={item.src}>
+							{({ isActive }) => (
+								<SwiperInner bg={item.src} isActive={isActive}>
+									{isActive && (
+										<>
 											<MainText>{makeTextAnimation(item.mainText)}</MainText>
 											<SubText>{item.subText}</SubText>
-										</SwiperInner>
-									</>
-								)
-							}
+										</>
+									)}
+								</SwiperInner>
+							)}
 						</SwiperSlide>
 					))}
 				</Swiper>
