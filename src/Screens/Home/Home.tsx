@@ -1,4 +1,4 @@
-import React, { ReactComponentElement, useState } from "react";
+import React, { ReactComponentElement, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination, EffectFade } from "swiper";
@@ -10,6 +10,7 @@ import SliderImg2 from "../../Assets/img/main-swiper-2.jpg";
 import SliderImg3 from "../../Assets/img/main-swiper-3.jpg";
 import Cursor from "../../Components/Common/Cursor";
 import { FadeIn, FadeInTopToBottom, FadeInZ } from "../../Styles/theme";
+import Loading from "../../Components/Common/Loading";
 
 SwiperCore.use([Navigation, Pagination, EffectFade]);
 
@@ -173,8 +174,16 @@ const Home = () => {
 			setCurrentPosition("right");
 		}
 	};
+	const [loading, setLoading] = useState(true);
 
-	return (
+	useEffect(() => {
+		setTimeout(() => {
+			setLoading(false);
+		}, 3000);
+	}, []);
+	return loading ? (
+		<Loading />
+	) : (
 		<Container>
 			{customCursor && <Cursor currentPosition={currentPosition} />}
 			<SwiperWrap

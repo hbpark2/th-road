@@ -150,3 +150,16 @@ export const FadeIn = keyframes`
     opacity:1;
   }
 `;
+
+export const Stroke = keyframes`
+  0%   {
+    fill: rgba(255,255,240,0); stroke: rgba(200,200,170,1);
+    stroke-dashoffset: 25%; stroke-dasharray: 0 50%; stroke-width: 2;
+  }
+  70%  {fill: rgba(255,255,240,0); stroke: rgba(200,200,170,1); }
+  80%  {fill: rgba(255,255,240,0); stroke: rgba(200,200,170,1); stroke-width: 3; }
+  100% {
+    fill: rgba(255,255,240,1); stroke: rgba(200,200,170,0); 
+    stroke-dashoffset: -25%; stroke-dasharray: 50% 0; stroke-width: 0;
+  }
+`;
