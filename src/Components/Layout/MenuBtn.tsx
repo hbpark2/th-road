@@ -71,7 +71,7 @@ const CloseObjSecond = styled.i`
 
 interface MenuBtnProps {
 	menuOpen: boolean;
-	setMenuOpen: (menuOpen: boolean) => void;
+	setMenuOpen: (T: boolean) => void;
 }
 const MenuBtn: React.FC<MenuBtnProps> = ({ menuOpen, setMenuOpen }) => {
 	const onMenuClick = () => {

@@ -92,6 +92,7 @@ const AnimationSpan = styled.span<{ delay: number }>`
 	position: relative;
 	top: 0px;
 	display: block;
+	min-width: 0.2em;
 	animation-name: ${FadeInTopToBottom};
 	animation-duration: 0.7s;
 	animation-delay: ${(props) => {
@@ -179,7 +180,14 @@ const Home = () => {
 				onMouseMove={(e) => mouserOverSwiper(e)}
 				onMouseOut={() => SetCustomCursor(false)}
 			>
-				<Swiper navigation pagination={{ clickable: true }} loop effect="fade">
+				<Swiper
+					navigation
+					pagination={{ clickable: true }}
+					loop
+					effect="fade"
+					speed={1000}
+					fadeEffect={{ crossFade: true }}
+				>
 					{swiperArr.map((item, index) => (
 						<SwiperSlide key={index}>
 							{({ isActive }) => (
