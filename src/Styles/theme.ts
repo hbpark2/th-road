@@ -93,7 +93,7 @@ export const CloseBtnAni2 = keyframes`
 //Swiper Slide
 export const FadeInZ = keyframes`
   from {
-    transform: scale(0.9);
+    transform: scale(1.2);
     opacity:0;
   }
   to {

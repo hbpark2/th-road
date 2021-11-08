@@ -70,7 +70,8 @@ const SwiperInner = styled.div<{ bg: string }>`
 	background: url(${(props) => props.bg}) no-repeat;
 	background-size: cover;
 	animation-name: ${FadeInZ};
-	animation-duration: 1s;
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 	color: ${(props) => props.theme.white};
 	img {
 		width: 100%;
@@ -190,16 +191,16 @@ const Home = () => {
 				>
 					{swiperArr.map((item, index) => (
 						<SwiperSlide key={index}>
-							{({ isActive }) => (
-								<SwiperInner bg={item.src}>
-									{isActive && (
-										<>
+							{({ isActive }) =>
+								isActive && (
+									<>
+										<SwiperInner bg={item.src}>
 											<MainText>{makeTextAnimation(item.mainText)}</MainText>
 											<SubText>{item.subText}</SubText>
-										</>
-									)}
-								</SwiperInner>
-							)}
+										</SwiperInner>
+									</>
+								)
+							}
 						</SwiperSlide>
 					))}
 				</Swiper>
