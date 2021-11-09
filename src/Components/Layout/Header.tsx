@@ -41,13 +41,14 @@ const Nav = styled.nav`
 
 const NavUl = styled.ul`
 	display: flex;
+	flex-direction: column;
 	li {
 		margin: 0 10px;
 		font-weight: 500;
 	}
 `;
 
-const MobileNav = styled.nav<{ menuOpen: boolean }>`
+const MobileNav = styled.nav<{ menuOpen: boolean; menuClose: boolean }>`
 	display: none;
 	@media screen and (max-width: 1024px) {
 		position: fixed;
@@ -55,22 +56,34 @@ const MobileNav = styled.nav<{ menuOpen: boolean }>`
 		left: 0;
 		width: 100vw;
 		height: 100vh;
-		display: block;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		/* background-color: ${(props) =>
+			props.menuClose ? "transparent" : props.theme.black}; */
 		background-color: ${(props) => props.theme.black};
 		animation: ${FadeIn};
 		animation-duration: 1s;
+		opacity: ${(props) => (props.menuClose ? 0 : 1)};
+		transition: opacity 1s;
 	}
 `;
 
 const Header = () => {
 	const [menuOpen, setMenuOpen] = useState<boolean>(false);
-
+	const [menuClose, setMenuClose] = useState<boolean>(false);
+	console.log(menuClose);
 	return (
 		<Container>
 			<LogoWrap>
 				<Logo>TH-ROAD</Logo>
 			</LogoWrap>
-			<MenuBtn menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+			<MenuBtn
+				menuOpen={menuOpen}
+				setMenuOpen={setMenuOpen}
+				menuClose={menuClose}
+				setMenuClose={setMenuClose}
+			/>
 			<Nav>
 				<NavUl>
 					<li>
@@ -90,7 +103,28 @@ const Header = () => {
 					</li>
 				</NavUl>
 			</Nav>
-			{menuOpen && <MobileNav menuOpen={menuOpen} />}
+
+			{menuOpen && (
+				<MobileNav menuOpen={menuOpen} menuClose={menuClose}>
+					<NavUl>
+						<li>
+							<Link to="/">COWBOY 3</Link>
+						</li>
+						<li>
+							<Link to="/">COWBOY 4</Link>
+						</li>
+						<li>
+							<Link to="/">COWBOY ST</Link>
+						</li>
+						<li>
+							<Link to="/">APP</Link>
+						</li>
+						<li>
+							<Link to="/">SERVICES</Link>
+						</li>
+					</NavUl>
+				</MobileNav>
+			)}
 		</Container>
 	);
 };

@@ -1,4 +1,4 @@
-import React, { SetStateAction } from "react";
+import React, { SetStateAction, useState } from "react";
 import styled from "styled-components";
 import { CloseBtnAni1, CloseBtnAni2 } from "../../Styles/theme";
 
@@ -72,13 +72,21 @@ const CloseObjSecond = styled.i`
 interface MenuBtnProps {
 	menuOpen: boolean;
 	setMenuOpen: (T: boolean) => void;
+	menuClose: boolean;
+	setMenuClose: (T: boolean) => void;
 }
-const MenuBtn: React.FC<MenuBtnProps> = ({ menuOpen, setMenuOpen }) => {
+const MenuBtn: React.FC<MenuBtnProps> = ({
+	menuOpen,
+	setMenuOpen,
+	setMenuClose,
+}) => {
 	const onMenuClick = () => {
 		if (menuOpen) {
+			setMenuClose(true);
 			setTimeout(() => {
 				setMenuOpen(false);
-			}, 1000);
+				setMenuClose(false);
+			}, 500);
 			return;
 		}
 		setMenuOpen(!menuOpen);

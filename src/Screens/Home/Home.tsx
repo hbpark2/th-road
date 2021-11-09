@@ -133,11 +133,11 @@ const AboutSection = styled.article`
 `;
 
 const Home = () => {
+	const [loading, setLoading] = useState<boolean>(true);
 	const [customCursor, SetCustomCursor] = useState<boolean>(false);
 	const [currentPosition, setCurrentPosition] = useState<"left" | "right" | "">(
 		""
 	);
-	const [textRender, setTextRender] = useState(false);
 
 	type SwiperArrTypes = {
 		src: string;
@@ -145,6 +145,7 @@ const Home = () => {
 		mainText: string;
 		subText: string;
 	};
+
 	const swiperArr: Array<SwiperArrTypes> = [
 		{
 			src: SliderImg1,
@@ -189,7 +190,6 @@ const Home = () => {
 			setCurrentPosition("right");
 		}
 	};
-	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		setTimeout(() => {
