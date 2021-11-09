@@ -119,6 +119,7 @@ const SubText = styled.p`
 	animation-delay: 1s;
 	animation-fill-mode: both;
 	opacity: 0;
+
 	@media screen and (max-width: 1024px) {
 		padding: 0 10px;
 		line-height: 1.4em;
@@ -195,10 +196,10 @@ const Home = () => {
 			setLoading(false);
 		}, 3000);
 	}, []);
-	return loading ? (
-		<Loading />
-	) : (
+
+	return (
 		<Container>
+			{loading && <Loading />}
 			{customCursor && <Cursor currentPosition={currentPosition} />}
 			<SwiperWrap
 				onMouseMove={(e) => mouserOverSwiper(e)}
@@ -215,7 +216,7 @@ const Home = () => {
 					{swiperArr.map((item, index) => (
 						<SwiperSlide key={index}>
 							{({ isActive }) => (
-								<SwiperInner bg={item.src} isActive={isActive}>
+								<SwiperInner bg={item.src} isActive={isActive && !loading}>
 									{isActive && (
 										<>
 											<MainText>{makeTextAnimation(item.mainText)}</MainText>
