@@ -160,7 +160,7 @@ export const Stroke = keyframes`
   70%  {fill: rgba(255,255,255,0); stroke: rgba(200,200,200,1); }
   80%  {fill: rgba(255,255,255,0); stroke: rgba(200,200,200,1); stroke-width: 3; }
   100% {
-    fill: rgba(255,255,230,1); stroke: rgba(200,200,200,0); 
+    fill: rgba(255,255,255,1); stroke: rgba(200,200,200,0); 
     stroke-dashoffset: -25%; stroke-dasharray: 50% 0; stroke-width: 0;
   }
 `;
