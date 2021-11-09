@@ -8,7 +8,7 @@ const Container = styled.div`
 	left: 0;
 	z-index: 500;
 	width: 100vw;
-	height: 100vh;
+	height: ${window.innerHeight};
 	background-color: ${(props) => props.theme.black};
 	svg {
 		font-family: "Noto Sans KR", sans-serif;

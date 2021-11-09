@@ -55,7 +55,7 @@ const MobileNav = styled.nav<{ menuOpen: boolean; menuClose: boolean }>`
 		top: 0;
 		left: 0;
 		width: 100vw;
-		height: 100vh;
+		height: ${window.innerHeight};
 		display: flex;
 		justify-content: center;
 		align-items: center;
