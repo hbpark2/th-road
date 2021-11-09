@@ -1,9 +1,9 @@
 import { faHamburger } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { ReactElement, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { FadeIn } from "../../Styles/theme";
+import { LogoText } from "../Common/Loading";
 import MenuBtn from "./MenuBtn";
 
 const Container = styled.header`
@@ -46,44 +46,57 @@ const NavUl = styled.ul`
 		margin: 0 10px;
 		font-weight: 500;
 	}
+	@media screen and (max-width: 1024px) {
+		position: absolute;
+		left: 20px;
+		bottom: 50px;
+	}
 `;
 
-const MobileNav = styled.nav<{ menuOpen: boolean; menuClose: boolean }>`
+const NavList = styled.li<{ menuOpen?: boolean }>`
+	position: relative;
+	right: ${(props) => (props.menuOpen ? "0px" : "-50px")};
+	opacity: ${(props) => (props.menuOpen ? "1" : "0")};
+	transition: all 0.5s;
+	transition-delay: ${(props) => props.menuOpen && "1s"};
+	font-size: 36px;
+	line-height: 1.2em;
+`;
+
+const MobileNav = styled.nav<{ menuOpen: boolean }>`
 	display: none;
 	@media screen and (max-width: 1024px) {
 		position: fixed;
+		left: ${(props) => (props.menuOpen ? "0px" : `${window.innerHeight}px`)};
 		top: 0;
-		left: 0;
 		width: 100vw;
-		height: ${window.innerHeight};
+		height: ${window.innerHeight}px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		/* background-color: ${(props) =>
-			props.menuClose ? "transparent" : props.theme.black}; */
 		background-color: ${(props) => props.theme.black};
-		animation: ${FadeIn};
-		animation-duration: 1s;
-		opacity: ${(props) => (props.menuClose ? 0 : 1)};
-		transition: opacity 1s;
+		opacity: ${(props) => (!props.menuOpen ? 0 : 1)};
+		transition: all 1.5s;
+		transition-timing-function: ${(props) =>
+			props.menuOpen
+				? "cubic-bezier(0.1, 0.82, 0.165, 1)"
+				: "cubic-bezier(0.1, 0.82, 0.165, 1)"};
 	}
 `;
 
 const Header = () => {
 	const [menuOpen, setMenuOpen] = useState<boolean>(false);
-	const [menuClose, setMenuClose] = useState<boolean>(false);
-	console.log(menuClose);
+	const [listState, setListState] = useState<boolean>(false);
+
+	useEffect(() => {
+		setListState(menuOpen);
+	}, [menuOpen]);
 	return (
 		<Container>
 			<LogoWrap>
 				<Logo>TH-ROAD</Logo>
 			</LogoWrap>
-			<MenuBtn
-				menuOpen={menuOpen}
-				setMenuOpen={setMenuOpen}
-				menuClose={menuClose}
-				setMenuClose={setMenuClose}
-			/>
+			<MenuBtn menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 			<Nav>
 				<NavUl>
 					<li>
@@ -104,27 +117,30 @@ const Header = () => {
 				</NavUl>
 			</Nav>
 
-			{menuOpen && (
-				<MobileNav menuOpen={menuOpen} menuClose={menuClose}>
-					<NavUl>
-						<li>
-							<Link to="/">COWBOY 3</Link>
-						</li>
-						<li>
-							<Link to="/">COWBOY 4</Link>
-						</li>
-						<li>
-							<Link to="/">COWBOY ST</Link>
-						</li>
-						<li>
-							<Link to="/">APP</Link>
-						</li>
-						<li>
-							<Link to="/">SERVICES</Link>
-						</li>
-					</NavUl>
-				</MobileNav>
-			)}
+			<MobileNav menuOpen={menuOpen}>
+				<LogoText viewBox="0 600 1320 300">
+					<text x="50%" y="0" dy=".35em" textAnchor="middle">
+						th-road
+					</text>
+				</LogoText>
+				<NavUl className="movile-ul">
+					<NavList menuOpen={listState}>
+						<Link to="/">COWBOY 3</Link>
+					</NavList>
+					<NavList menuOpen={listState}>
+						<Link to="/">COWBOY 4</Link>
+					</NavList>
+					<NavList menuOpen={listState}>
+						<Link to="/">COWBOY ST</Link>
+					</NavList>
+					<NavList menuOpen={listState}>
+						<Link to="/">APP</Link>
+					</NavList>
+					<NavList menuOpen={listState}>
+						<Link to="/">SERVICES</Link>
+					</NavList>
+				</NavUl>
+			</MobileNav>
 		</Container>
 	);
 };

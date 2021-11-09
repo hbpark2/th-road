@@ -8,7 +8,7 @@ const Container = styled.div`
 	left: 0;
 	z-index: 500;
 	width: 100vw;
-	height: ${window.innerHeight};
+	height: ${window.innerHeight}px;
 	background-color: ${(props) => props.theme.black};
 	svg {
 		font-family: "Noto Sans KR", sans-serif;
@@ -17,6 +17,21 @@ const Container = styled.div`
 		height: 100%;
 	}
 	svg text {
+		text-transform: uppercase;
+		animation: ${Stroke} 3s infinite alternate;
+		stroke-width: 2;
+		stroke: #fff;
+		font-size: 140px;
+	}
+`;
+
+export const LogoText = styled.svg`
+	font-family: "Noto Sans KR", sans-serif;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	text {
 		text-transform: uppercase;
 		animation: ${Stroke} 3s infinite alternate;
 		stroke-width: 2;

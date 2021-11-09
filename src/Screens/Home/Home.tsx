@@ -16,7 +16,7 @@ SwiperCore.use([Navigation, Pagination, EffectFade]);
 
 //style
 const Container = styled.main`
-	min-height: 100vh;
+	height: ${window.innerHeight}px;
 `;
 
 const SwiperWrap = styled.article`
@@ -67,7 +67,7 @@ const SwiperInner = styled.div<{ bg: string; isActive: boolean }>`
 	justify-content: center;
 	align-items: center;
 	width: 100%;
-	height: 100vh;
+	height: ${window.innerHeight}px;
 	background: url(${(props) => props.bg}) no-repeat;
 	background-size: cover;
 	animation-name: ${(props) => props.isActive && FadeInZ};
