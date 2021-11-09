@@ -145,9 +145,11 @@ export const TopToBottom = keyframes`
 
 export const FadeIn = keyframes`
   from {
+    visibility: hidden;
     opacity:0;
   }
   to {
+    visibility: visible;
     opacity:1;
   }
 `;

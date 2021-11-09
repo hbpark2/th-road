@@ -2,7 +2,7 @@ import { faHamburger } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { ReactElement, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { LogoText } from "../Common/Loading";
 import MenuBtn from "./MenuBtn";
 
@@ -67,7 +67,7 @@ const MobileNav = styled.nav<{ menuOpen: boolean }>`
 	display: none;
 	@media screen and (max-width: 1024px) {
 		position: fixed;
-		left: ${(props) => (props.menuOpen ? "0px" : `${window.innerHeight}px`)};
+		left: 0;
 		top: 0;
 		width: 100vw;
 		height: ${window.innerHeight}px;
@@ -75,12 +75,23 @@ const MobileNav = styled.nav<{ menuOpen: boolean }>`
 		justify-content: center;
 		align-items: center;
 		background-color: ${(props) => props.theme.black};
-		opacity: ${(props) => (!props.menuOpen ? 0 : 1)};
 		transition: all 1.5s;
 		transition-timing-function: ${(props) =>
 			props.menuOpen
 				? "cubic-bezier(0.1, 0.82, 0.165, 1)"
 				: "cubic-bezier(0.1, 0.82, 0.165, 1)"};
+
+		${(props) =>
+			props.menuOpen
+				? css`
+						opacity: 1;
+						visibility: visible;
+				  `
+				: css`
+						opacity: 0;
+						visibility: hidden;
+						transition-delay: 1s;
+				  `}
 	}
 `;
 
@@ -123,7 +134,7 @@ const Header = () => {
 						th-road
 					</text>
 				</LogoText>
-				<NavUl className="movile-ul">
+				<NavUl>
 					<NavList menuOpen={listState}>
 						<Link to="/">COWBOY 3</Link>
 					</NavList>
