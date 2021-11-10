@@ -16,5 +16,6 @@ declare module "styled-components" {
 		fontSizeXL: string;
 		fontSizeXXL: string;
 		fontSizeXXXL: string;
+		deviceScreen: { [T in "mobile" | "tablet" | "laptop"]: string };
 	}
 }

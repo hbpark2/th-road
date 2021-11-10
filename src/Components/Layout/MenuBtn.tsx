@@ -1,16 +1,15 @@
 import React, { SetStateAction, useState } from "react";
 import styled from "styled-components";
-import { CloseBtnAni1, CloseBtnAni2 } from "../../Styles/theme";
+import { CloseBtnAni1, CloseBtnAni2 } from "../../Styles/animation";
 
 const Container = styled.button`
-	display: block;
-	position: relative;
-	z-index: 100;
-	transition: all 0.5s;
-	overflow: hidden;
-
-	@media screen and (min-width: 1025px) {
-		display: none;
+	display: none;
+	@media ${({ theme }) => theme.deviceScreen.laptop} {
+		display: block;
+		position: relative;
+		z-index: 100;
+		transition: all 0.5s;
+		overflow: hidden;
 	}
 `;
 
@@ -23,21 +22,21 @@ const Bar = styled.i<{ menuOpen: boolean }>`
 	margin-top: 5px;
 	border-radius: 5px;
 	transition: left 0.5s;
-	transition-delay: ${(props) => !props.menuOpen && "0.5s"};
+	transition-delay: ${({ menuOpen }) => !menuOpen && "0.5s"};
 
 	&:nth-of-type(1) {
 		width: 15px;
-		left: ${(props) => (props.menuOpen ? "-40px" : "0px")};
+		left: ${({ menuOpen }) => (menuOpen ? "-40px" : "0px")};
 		transition: left 0.5s;
 	}
 	&:nth-of-type(2) {
 		width: 25px;
-		left: ${(props) => (props.menuOpen ? "-40px" : "0px")};
+		left: ${({ menuOpen }) => (menuOpen ? "-40px" : "0px")};
 		transition: left 0.7s;
 	}
 	&:nth-of-type(3) {
 		width: 35px;
-		left: ${(props) => (props.menuOpen ? "-40px" : "0px")};
+		left: ${({ menuOpen }) => (menuOpen ? "-40px" : "0px")};
 		transition: left 0.9s;
 	}
 `;
@@ -54,9 +53,9 @@ const CloseBtn = styled.i<{ menuOpen: boolean }>`
 		background-color: #fff;
 		height: 4px;
 		border-radius: 5px;
-		width: ${(props) => (props.menuOpen ? "30px" : "0px")};
+		width: ${({ menuOpen }) => (menuOpen ? "30px" : "0px")};
 		transition: all 0.5s;
-		transition-delay: ${(props) => props.menuOpen && "0.5s"};
+		transition-delay: ${({ menuOpen }) => menuOpen && "0.5s"};
 		bottom: 40px;
 	}
 `;
@@ -79,7 +78,7 @@ const MenuBtn: React.FC<MenuBtnProps> = ({ menuOpen, setMenuOpen }) => {
 	};
 
 	return (
-		<Container onClick={onMenuClick}>
+		<Container onClick={onMenuClick} aria-hidden={menuOpen}>
 			<Bar menuOpen={menuOpen} />
 			<Bar menuOpen={menuOpen} />
 			<Bar menuOpen={menuOpen} />

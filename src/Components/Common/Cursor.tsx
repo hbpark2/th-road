@@ -8,7 +8,7 @@ import {
 	faArrowRight,
 	faCaretLeft,
 } from "@fortawesome/free-solid-svg-icons";
-import { CircleAni } from "../../Styles/theme";
+import { CircleAni } from "../../Styles/animation";
 
 const Container = styled.div<{ currentPosition: string }>`
 	display: flex;
@@ -60,7 +60,7 @@ const Container = styled.div<{ currentPosition: string }>`
 		animation-direction: reverse;
 	}
 
-	@media screen and (max-width: 1024px) {
+	@media ${({ theme }) => theme.deviceScreen.laptop} {
 		display: none;
 	}
 `;
@@ -82,15 +82,15 @@ const Cursor: React.FC<CursorProps> = ({ currentPosition }) => {
 		return () => removeEventListeners();
 	}, []);
 
-	const addEventListeners = () => {
+	const addEventListeners = (): void => {
 		document.addEventListener("mousemove", onMouseMove);
 	};
 
-	const removeEventListeners = () => {
+	const removeEventListeners = (): void => {
 		document.removeEventListener("mousemove", onMouseMove);
 	};
 
-	const onMouseMove = (e: MouseEvent) => {
+	const onMouseMove = (e: MouseEvent): void => {
 		setPosition({ x: e.clientX, y: e.clientY });
 	};
 

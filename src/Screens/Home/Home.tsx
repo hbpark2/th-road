@@ -9,7 +9,7 @@ import SliderImg1 from "../../Assets/img/main-swiper-1.jpg";
 import SliderImg2 from "../../Assets/img/main-swiper-2.jpg";
 import SliderImg3 from "../../Assets/img/main-swiper-3.jpg";
 import Cursor from "../../Components/Common/Cursor";
-import { FadeIn, FadeInTopToBottom, FadeInZ } from "../../Styles/theme";
+import { FadeIn, FadeInTopToBottom, FadeInZ } from "../../Styles/animation";
 import Loading from "../../Components/Common/Loading";
 
 SwiperCore.use([Navigation, Pagination, EffectFade]);
@@ -68,16 +68,16 @@ const SwiperInner = styled.div<{ bg: string; isActive: boolean }>`
 	align-items: center;
 	width: 100%;
 	height: ${window.innerHeight}px;
-	background: url(${(props) => props.bg}) no-repeat;
+	background: url(${({ bg }) => bg}) no-repeat;
 	background-size: cover;
-	animation-name: ${(props) => props.isActive && FadeInZ};
+	animation-name: ${({ isActive }) => isActive && FadeInZ};
 	animation-duration: 2s;
 	animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-	color: ${(props) => props.theme.white};
+	color: ${({ theme }) => theme.white};
 	img {
 		width: 100%;
 	}
-	@media screen and (max-width: 1024px) {
+	@media ${({ theme }) => theme.deviceScreen.laptop} {
 		background-size: cover;
 		background-position: center center;
 	}
@@ -87,12 +87,12 @@ const MainText = styled.p`
 	position: relative;
 	display: flex;
 	font-weight: 700;
-	font-size: ${(props) => props.theme.fontSizeXXXL};
+	font-size: ${({ theme }) => theme.fontSizeXXXL};
 	line-height: 1.5em;
 	margin-bottom: 20px;
 	animation-name: ${FadeIn};
 	animation-duration: 1s;
-	@media screen and (max-width: 1024px) {
+	@media ${({ theme }) => theme.deviceScreen.laptop} {
 		font-size: 34px;
 	}
 `;
@@ -104,15 +104,15 @@ const AnimationSpan = styled.span<{ delay: number }>`
 	min-width: 0.2em;
 	animation-name: ${FadeInTopToBottom};
 	animation-duration: 0.7s;
-	animation-delay: ${(props) => {
-		return `${props.delay / 15}s`;
+	animation-delay: ${({ delay }) => {
+		return `${delay / 15}s`;
 	}};
 	animation-fill-mode: both;
 	opacity: 0;
 `;
 
 const SubText = styled.p`
-	font-size: ${(props) => props.theme.fontSizeXL};
+	font-size: ${({ theme }) => theme.fontSizeXL};
 	text-align: center;
 	animation-name: ${FadeIn};
 	animation-duration: 2s;
@@ -120,10 +120,10 @@ const SubText = styled.p`
 	animation-fill-mode: both;
 	opacity: 0;
 
-	@media screen and (max-width: 1024px) {
+	@media ${({ theme }) => theme.deviceScreen.laptop} {
 		padding: 0 10px;
 		line-height: 1.4em;
-		font-size: ${(props) => props.theme.fontSizeL};
+		font-size: ${({ theme }) => theme.fontSizeL};
 		text-align: center;
 	}
 `;

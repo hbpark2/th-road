@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Stroke } from "../../Styles/theme";
+import { Stroke } from "../../Styles/animation";
 
 const Container = styled.div`
 	position: fixed;
@@ -9,7 +9,7 @@ const Container = styled.div`
 	z-index: 500;
 	width: 100vw;
 	height: ${window.innerHeight}px;
-	background-color: ${(props) => props.theme.black};
+	background-color: ${({ theme }) => theme.black};
 	svg {
 		font-family: "Noto Sans KR", sans-serif;
 		position: absolute;
