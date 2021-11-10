@@ -1,4 +1,6 @@
 import { createGlobalStyle, DefaultTheme, keyframes } from "styled-components";
+import reset from "styled-reset";
+
 // Media query
 const deviceSizes = {
 	mobile: "639px",
@@ -32,7 +34,7 @@ export const commonTheme: DefaultTheme = {
 
 //global
 export const GlobalStyles = createGlobalStyle`
-
+  ${reset}
   body{
     background-color:${(props) => props.theme.black};
     font-family: 'Noto Sans KR', sans-serif;  

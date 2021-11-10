@@ -140,10 +140,7 @@ const Home = () => {
 	);
 
 	type SwiperArrTypes = {
-		src: string;
-		alt: string;
-		mainText: string;
-		subText: string;
+		[T in "src" | "alt" | "mainText" | "subText"]: string;
 	};
 
 	const swiperArr: Array<SwiperArrTypes> = [

@@ -1,18 +1,19 @@
 export const utils = {
 	checkAgent: () => {
-		var userAgent = navigator.userAgent.toLowerCase();
-		let browser;
+		const userAgent: string = navigator.userAgent.toLowerCase();
+		type BrowserType = "EDGE" | "WHALE" | "CHROME" | "FIREFOX" | "IE";
+		let browser: BrowserType;
 
 		if (userAgent.indexOf("edge") > -1) {
-			browser = "익스플로러 엣지";
+			browser = "EDGE";
 		} else if (userAgent.indexOf("whale") > -1) {
-			browser = "네이버 웨일";
+			browser = "WHALE";
 		} else if (userAgent.indexOf("chrome") > -1) {
-			browser = "크롬";
+			browser = "CHROME";
 		} else if (userAgent.indexOf("firefox") > -1) {
-			browser = "파이어폭스";
+			browser = "FIREFOX";
 		} else {
-			browser = "익스플로러";
+			browser = "IE";
 		}
 		return browser;
 	},

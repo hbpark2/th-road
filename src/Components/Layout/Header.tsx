@@ -138,7 +138,13 @@ const Header = () => {
 				</NavUl>
 			</Nav>
 
-			<MobileNav menuOpen={menuOpen} aria-hidden={menuOpen}>
+			<MobileNav
+				menuOpen={menuOpen}
+				aria-hidden={menuOpen}
+				id="menu-list"
+				role="menu"
+				aria-labelledby="menu-button"
+			>
 				<LogoText viewBox="0 600 1320 300">
 					<text x="50%" y="0" dy=".35em" textAnchor="middle">
 						th-road
