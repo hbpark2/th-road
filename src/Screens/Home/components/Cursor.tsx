@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-	faAlignLeft,
-	faAngleLeft,
-	faArrowLeft,
-	faArrowRight,
-	faCaretLeft,
-} from "@fortawesome/free-solid-svg-icons";
-import { CircleAni } from "../../Styles/animation";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { CircleAni } from "../../../Styles/animation";
 
 const Container = styled.div<{ currentPosition: string }>`
+	position: fixed;
+	transform: translate(-50%, -50%);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -18,8 +14,6 @@ const Container = styled.div<{ currentPosition: string }>`
 	color: #fff;
 	width: 40px;
 	height: 40px;
-	position: fixed;
-	transform: translate(-50%, -50%);
 	pointer-events: none;
 	mix-blend-mode: difference;
 	z-index: 9999;
@@ -107,7 +101,6 @@ const Cursor: React.FC<CursorProps> = ({ currentPosition }) => {
 			) : (
 				<FontAwesomeIcon icon={faArrowRight} color="#fff" />
 			)}
-			{/* {currentPosition} */}
 		</Container>
 	);
 };

@@ -126,7 +126,7 @@ const Header = () => {
 				</Logo>
 			</LogoWrap>
 			<MenuBtn menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-			<Nav aria-hidden={!menuOpen}>
+			<Nav aria-hidden={window.innerWidth > 1023}>
 				<NavUl>
 					{menuArr.map((item, index) => (
 						<li key={`menuList${index}`}>
@@ -140,10 +140,9 @@ const Header = () => {
 
 			<MobileNav
 				menuOpen={menuOpen}
-				aria-hidden={menuOpen}
-				id="menu-list"
-				role="menu"
-				aria-labelledby="menu-button"
+				aria-hidden={window.innerWidth < 1024}
+				id="navigation"
+				aria-labelledby="nav-button"
 			>
 				<LogoText viewBox="0 600 1320 300">
 					<text x="50%" y="0" dy=".35em" textAnchor="middle">

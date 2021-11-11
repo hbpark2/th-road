@@ -81,10 +81,10 @@ const MenuBtn: React.FC<MenuBtnProps> = ({ menuOpen, setMenuOpen }) => {
 		<Container
 			type="button"
 			onClick={onMenuClick}
-			id="menu-button"
+			id="nav-button"
 			aria-haspopup="menu"
-			aria-controls="menu-list"
-			aria-hidden={menuOpen}
+			aria-controls="navigation"
+			aria-expanded={menuOpen}
 		>
 			<Bar menuOpen={menuOpen} />
 			<Bar menuOpen={menuOpen} />
