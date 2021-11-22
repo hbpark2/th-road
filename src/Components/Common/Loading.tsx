@@ -34,7 +34,7 @@ export const LogoText = styled.svg`
 
 	text {
 		text-transform: uppercase;
-		animation: ${Stroke} 3s infinite alternate;
+		animation: ${Stroke} 2s infinite alternate;
 		stroke-width: 2;
 		stroke: #fff;
 		font-size: 140px;

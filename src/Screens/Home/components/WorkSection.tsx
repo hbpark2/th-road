@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { useScroll } from "../../../Components/Hooks/Scroll";
+import { useScroll } from "../../../Hooks/Scroll";
 import { workArr } from "./workData";
 
 const Container = styled.article`

@@ -4,7 +4,7 @@ import Cursor from "./components/Cursor";
 import Loading from "../../Components/Common/Loading";
 import SwiperSection from "./components/SwiperSection";
 import WorkSection from "./components/WorkSection";
-import { Helmet } from "react-helmet";
+import Meta from "../../Components/Common/Helmet";
 
 //style
 const Container = styled.main`
@@ -31,15 +31,12 @@ const Home = () => {
 	useEffect(() => {
 		setTimeout(() => {
 			setLoading(false);
-		}, 3000);
+		}, 2000);
 	}, []);
 
 	return (
 		<>
-			<Helmet>
-				<title>TH-ROAD | MAIN</title>
-				<meta name="description" content="Helmet application" />
-			</Helmet>
+			<Meta data={{ title: "TH-ROAD | MAIN", description: "TH-ROAD Main", locale: "ko" }} />
 
 			<Container>
 				{loading && <Loading />}
@@ -50,7 +47,7 @@ const Home = () => {
 					setCurrentPosition={setCurrentPosition}
 				/>
 				<AboutSection></AboutSection>
-				{/* <WorkSection /> */}
+				<WorkSection />
 				<Section></Section>
 			</Container>
 		</>
