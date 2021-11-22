@@ -20,6 +20,7 @@ export const commonTheme: DefaultTheme = {
 	black: "#252825",
 	headerBg: "rgba(37, 40, 37,0.5)",
 	white: "#ffffff",
+	cream: "#e5e5e1",
 	gray: "rgba(107 ,108 ,106 , 1)",
 	beige: "#b2aca2",
 	headerText: "#ffffff",
@@ -39,6 +40,7 @@ export const GlobalStyles = createGlobalStyle`
     background-color:${(props) => props.theme.black};
     font-family: 'Noto Sans KR', sans-serif;  
   }
+
 
   main{
     width: auto;

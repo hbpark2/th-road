@@ -90,6 +90,7 @@ const Cursor: React.FC<CursorProps> = ({ currentPosition }) => {
 
 	return (
 		<Container
+			role="cursor"
 			currentPosition={currentPosition}
 			style={{
 				left: `${position.x}px`,

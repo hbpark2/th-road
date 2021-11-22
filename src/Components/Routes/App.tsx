@@ -4,15 +4,19 @@ import { ThemeProvider } from "styled-components";
 import { GlobalStyles, commonTheme } from "../../Styles/theme";
 import Header from "../Layout/Header";
 import Routes from "./Routes";
-const App = () => {
+import { StoreProvider } from "../../Context/ContextStore";
+
+const App: React.FC = () => {
 	return (
-		<ThemeProvider theme={commonTheme}>
-			<GlobalStyles />
-			<BrowserRouter>
-				<Header />
-				<Routes />
-			</BrowserRouter>
-		</ThemeProvider>
+		<StoreProvider>
+			<ThemeProvider theme={commonTheme}>
+				<GlobalStyles />
+				<BrowserRouter>
+					<Header />
+					<Routes />
+				</BrowserRouter>
+			</ThemeProvider>
+		</StoreProvider>
 	);
 };
 

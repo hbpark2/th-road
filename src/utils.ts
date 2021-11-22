@@ -17,4 +17,11 @@ export const utils = {
 		}
 		return browser;
 	},
+	isMobile: () => {
+		if (window.innerWidth < 640) {
+			return true;
+		} else {
+			return false;
+		}
+	},
 };

@@ -1,8 +1,7 @@
-import { faHamburger } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { ReactElement, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import styled, { css } from "styled-components";
+import { CurrentContext } from "../../Context/ContextStore";
 import { LogoText } from "../Common/Loading";
 import MenuBtn from "./MenuBtn";
 
@@ -20,7 +19,7 @@ const Container = styled.header`
 	z-index: 100;
 	transition: background-color 0.5s;
 	&:hover {
-		background-color: ${(props) => props.theme.headerBg};
+		background-color: ${({ theme }) => theme.headerBg};
 	}
 
 	@media ${({ theme }) => theme.deviceScreen.laptop} {
@@ -36,39 +35,8 @@ const LogoWrap = styled.h1`
 
 const Logo = styled.span``;
 
-const Nav = styled.nav`
+const Nav = styled.nav<{ menuOpen: boolean }>`
 	display: block;
-	@media ${({ theme }) => theme.deviceScreen.laptop} {
-		display: none;
-	}
-`;
-
-const NavUl = styled.ul`
-	display: flex;
-	li {
-		margin: 0 10px;
-		font-weight: 500;
-	}
-	@media ${({ theme }) => theme.deviceScreen.laptop} {
-		flex-direction: column;
-		position: absolute;
-		left: 20px;
-		bottom: 50px;
-	}
-`;
-
-const NavList = styled.li<{ menuOpen?: boolean }>`
-	position: relative;
-	right: ${({ menuOpen }) => (menuOpen ? "0px" : "-50px")};
-	opacity: ${({ menuOpen }) => (menuOpen ? "1" : "0")};
-	transition-delay: ${({ menuOpen }) => menuOpen && "1s"};
-	transition: all 0.5s;
-	font-size: 36px;
-	line-height: 1.2em;
-`;
-
-const MobileNav = styled.nav<{ menuOpen: boolean }>`
-	display: none;
 	@media ${({ theme }) => theme.deviceScreen.laptop} {
 		position: fixed;
 		left: 0;
@@ -79,7 +47,7 @@ const MobileNav = styled.nav<{ menuOpen: boolean }>`
 		justify-content: center;
 		align-items: center;
 		background-color: ${({ theme }) => theme.black};
-		transition: all 1.5s;
+		transition: all 1s;
 		transition-timing-function: ${({ menuOpen }) =>
 			menuOpen
 				? "cubic-bezier(0.1, 0.82, 0.165, 1)"
@@ -94,8 +62,41 @@ const MobileNav = styled.nav<{ menuOpen: boolean }>`
 				: css`
 						opacity: 0;
 						visibility: hidden;
-						transition-delay: 1s;
+						transition-delay: 0.5s;
 				  `}
+	}
+`;
+
+const NavUl = styled.ul`
+	display: flex;
+
+	@media ${({ theme }) => theme.deviceScreen.laptop} {
+		flex-direction: column;
+		position: absolute;
+		left: 20px;
+		bottom: 50px;
+	}
+`;
+
+const NavList = styled.li<{ menuOpen?: boolean }>`
+	margin: 0 10px;
+	font-weight: 500;
+	@media ${({ theme }) => theme.deviceScreen.laptop} {
+		position: relative;
+		right: ${({ menuOpen }) => (menuOpen ? "0px" : "-50px")};
+		opacity: ${({ menuOpen }) => (menuOpen ? "1" : "0")};
+		transition: all 0.5s;
+		transition-delay: ${({ menuOpen }) => menuOpen && "0.5s"};
+		font-size: 36px;
+		line-height: 1.2em;
+	}
+`;
+
+const SLogoText = styled(LogoText)`
+	display: none;
+
+	@media ${({ theme }) => theme.deviceScreen.laptop} {
+		display: block;
 	}
 `;
 
@@ -103,7 +104,7 @@ type menuArrType = {
 	[T in "text" | "url" | "title"]: string;
 };
 const menuArr: menuArrType[] = [
-	{ text: "COWBOY 3", url: "/", title: "" },
+	{ text: "COWBOY 3", url: "/page_detail", title: "" },
 	{ text: "COWBOY 4", url: "/", title: "" },
 	{ text: "COWBOY ST", url: "/", title: "" },
 	{ text: "APP", url: "/", title: "" },
@@ -111,11 +112,18 @@ const menuArr: menuArrType[] = [
 ];
 
 const Header = () => {
-	const [menuOpen, setMenuOpen] = useState<boolean>(false);
+	const { menuOpen, setMenuOpen } = useContext(CurrentContext);
 	const [listState, setListState] = useState<boolean>(false);
 
 	useEffect(() => {
 		setListState(menuOpen);
+
+		// 접근성 main - aria-hidden
+		const container = document.querySelector("main")! as HTMLDivElement;
+		container.setAttribute(
+			"aria-hidden",
+			String(window.innerWidth > 640 ? true : !menuOpen)
+		);
 	}, [menuOpen]);
 
 	return (
@@ -126,39 +134,30 @@ const Header = () => {
 				</Logo>
 			</LogoWrap>
 			<MenuBtn menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-			<Nav aria-hidden={window.innerWidth > 1023}>
-				<NavUl>
-					{menuArr.map((item, index) => (
-						<li key={`menuList${index}`}>
-							<NavLink to={item.url} title={item.title}>
-								{item.text}
-							</NavLink>
-						</li>
-					))}
-				</NavUl>
-			</Nav>
-
-			<MobileNav
+			<Nav
 				menuOpen={menuOpen}
-				aria-hidden={window.innerWidth < 1024}
 				id="navigation"
 				aria-labelledby="nav-button"
+				aria-hidden={window.innerWidth < 640 ? menuOpen : true}
 			>
-				<LogoText viewBox="0 600 1320 300">
+				<h2 className="blind">네비게이션 영역</h2>
+				<SLogoText viewBox="0 600 1320 300">
 					<text x="50%" y="0" dy=".35em" textAnchor="middle">
 						th-road
 					</text>
-				</LogoText>
+				</SLogoText>
 				<NavUl>
 					{menuArr.map((item, index) => (
 						<NavList key={`menuList${index}`} menuOpen={listState}>
-							<NavLink to={item.url} title={item.title}>
-								{item.text}
-							</NavLink>
+							<h3>
+								<NavLink to={item.url} title={item.title}>
+									{item.text}
+								</NavLink>
+							</h3>
 						</NavList>
 					))}
 				</NavUl>
-			</MobileNav>
+			</Nav>
 		</Container>
 	);
 };

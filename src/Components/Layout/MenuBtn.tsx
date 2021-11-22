@@ -72,6 +72,7 @@ interface MenuBtnProps {
 	menuOpen: boolean;
 	setMenuOpen: (T: boolean) => void;
 }
+
 const MenuBtn: React.FC<MenuBtnProps> = ({ menuOpen, setMenuOpen }) => {
 	const onMenuClick = () => {
 		setMenuOpen(!menuOpen);

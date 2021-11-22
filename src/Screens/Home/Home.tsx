@@ -1,19 +1,23 @@
-import React, { ReactComponentElement, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Cursor from "./components/Cursor";
 import Loading from "../../Components/Common/Loading";
 import SwiperSection from "./components/SwiperSection";
+import WorkSection from "./components/WorkSection";
+import { Helmet } from "react-helmet";
 
 //style
 const Container = styled.main`
-	height: ${window.innerHeight}px;
+	min-height: ${window.innerHeight}px;
 `;
 
 const AboutSection = styled.article`
 	min-height: 100vh;
+	background-color: ${(props) => props.theme.cream};
 `;
 
-const WorkSection = styled.article`
+const Section = styled.article`
+	background-color: ${(props) => props.theme.white};
 	min-height: 100vh;
 `;
 
@@ -31,17 +35,25 @@ const Home = () => {
 	}, []);
 
 	return (
-		<Container>
-			{loading && <Loading />}
-			{customCursor && <Cursor currentPosition={currentPosition} />}
-			<SwiperSection
-				loading={loading}
-				SetCustomCursor={SetCustomCursor}
-				setCurrentPosition={setCurrentPosition}
-			/>
-			<AboutSection></AboutSection>
-			<WorkSection></WorkSection>
-		</Container>
+		<>
+			<Helmet>
+				<title>TH-ROAD | MAIN</title>
+				<meta name="description" content="Helmet application" />
+			</Helmet>
+
+			<Container>
+				{loading && <Loading />}
+				{customCursor && <Cursor currentPosition={currentPosition} />}
+				<SwiperSection
+					loading={loading}
+					SetCustomCursor={SetCustomCursor}
+					setCurrentPosition={setCurrentPosition}
+				/>
+				<AboutSection></AboutSection>
+				{/* <WorkSection /> */}
+				<Section></Section>
+			</Container>
+		</>
 	);
 };
 

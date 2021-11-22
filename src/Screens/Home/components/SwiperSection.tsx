@@ -1,7 +1,7 @@
 import React, { ReactComponentElement, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation, Pagination, EffectFade } from "swiper";
+import SwiperCore, { Navigation, Pagination, EffectFade, A11y } from "swiper";
 import "swiper/swiper-bundle.css";
 import SliderImg1 from "../../../Assets/img/main-swiper-1.jpg";
 import SliderImg2 from "../../../Assets/img/main-swiper-2.jpg";
@@ -9,7 +9,7 @@ import SliderImg3 from "../../../Assets/img/main-swiper-3.jpg";
 import { FadeIn, FadeInTopToBottom, FadeInZ } from "../../../Styles/animation";
 import { positionType } from "../Home";
 
-SwiperCore.use([Navigation, Pagination, EffectFade]);
+SwiperCore.use([Navigation, Pagination, EffectFade, A11y]);
 
 const SwiperWrap = styled.article`
 	z-index: 150;
@@ -129,22 +129,19 @@ const swiperArr: Array<SwiperArrTypes> = [
 		src: SliderImg1,
 		alt: "배너 이미지",
 		mainText: "Iconic by design",
-		subText:
-			"Every detail adds to the iconic Cowboy look for a new performeace standard",
+		subText: "Every detail adds to the iconic Cowboy look for a new performeace standard",
 	},
 	{
 		src: SliderImg2,
 		alt: "배너 이미지",
 		mainText: "Iconic by design",
-		subText:
-			"Every detail adds to the iconic Cowboy look for a new performeace standard",
+		subText: "Every detail adds to the iconic Cowboy look for a new performeace standard",
 	},
 	{
 		src: SliderImg3,
 		alt: "배너 이미지",
 		mainText: "Iconic by design",
-		subText:
-			"Every detail adds to the iconic Cowboy look for a new performeace standard",
+		subText: "Every detail adds to the iconic Cowboy look for a new performeace standard",
 	},
 ];
 
@@ -193,6 +190,10 @@ const SwiperSection: React.FC<SwiperSectionProps> = ({
 				effect="fade"
 				speed={1000}
 				fadeEffect={{ crossFade: true }}
+				a11y={{
+					prevSlideMessage: "previousSlide",
+					nextSlideMessage: "nextSlide",
+				}}
 			>
 				{swiperArr.map((item, index) => (
 					<SwiperSlide key={index}>

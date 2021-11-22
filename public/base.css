@@ -5,11 +5,9 @@
 *****************************/
 html {
 	-webkit-touch-callout: none;
-
-	-webkit-user-select: none;
-
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
 html,
 body {
 	height: 100%;
@@ -80,16 +78,16 @@ body {
 	line-height: 18px;
 	font-weight: 400;
 	color: #333;
-	font-family: "NotoSans KR", "Malgun Gothic", "맑은 고딕",
-		"Apple SD Gothic Neo", "돋움", dotum, sans-serif;
+	font-family: "NotoSans KR", "Malgun Gothic", "맑은 고딕", "Apple SD Gothic Neo", "돋움", dotum,
+		sans-serif;
 	-webkit-text-size-adjust: none;
 }
 
 pre,
 textarea,
 select {
-	font-family: "Noto Sans KR", "Malgun Gothic", "맑은 고딕", "Apple SD Gothic Neo",
-		"돋움", dotum, sans-serif;
+	font-family: "Noto Sans KR", "Malgun Gothic", "맑은 고딕", "Apple SD Gothic Neo", "돋움", dotum,
+		sans-serif;
 }
 
 fieldset {
@@ -126,8 +124,8 @@ button {
 	font-size: 14px;
 	vertical-align: middle;
 	background: none;
-	font-family: "Noto Sans KR", "Malgun Gothic", "맑은 고딕", "Apple SD Gothic Neo",
-		"돋움", dotum, sans-serif;
+	font-family: "Noto Sans KR", "Malgun Gothic", "맑은 고딕", "Apple SD Gothic Neo", "돋움", dotum,
+		sans-serif;
 	-webkit-appearance: none;
 	outline: none;
 }
