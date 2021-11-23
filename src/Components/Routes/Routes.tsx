@@ -3,12 +3,13 @@ import { Route, Switch } from "react-router";
 
 import Home from "../../Screens/Home/Home";
 import PageDetail from "../../Screens/PageDetail/PageDetail";
+import NotFound from "../Common/NotFound";
 
 const Routes = () => {
 	return (
 		<Switch>
 			<Route exact path="/" component={Home} />
-			<Route path="/page_detail" component={PageDetail} />
+			<Route exact path="/page_detail" component={PageDetail} />
 		</Switch>
 	);
 };
