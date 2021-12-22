@@ -3,34 +3,35 @@ import reset from "styled-reset";
 
 // Media query
 const deviceSizes = {
-	mobile: "639px",
-	tablet: "767px",
-	laptop: "1023px",
+  mobile: "639px",
+  tablet: "767px",
+  laptop: "1023px",
 };
 
 const device = {
-	mobile: `screen and (max-width: ${deviceSizes.mobile})`,
-	tablet: `screen and (max-width: ${deviceSizes.tablet})`,
-	laptop: `screen and (max-width: ${deviceSizes.laptop})`,
+  mobile: `screen and (max-width: ${deviceSizes.mobile})`,
+  tablet: `screen and (max-width: ${deviceSizes.tablet})`,
+  laptop: `screen and (max-width: ${deviceSizes.laptop})`,
 };
 
 export const commonTheme: DefaultTheme = {
-	keyBlue: "#4a99c3",
-	keyDeepBlue: "#0b547a",
-	black: "#252825",
-	headerBg: "rgba(37, 40, 37,0.5)",
-	white: "#ffffff",
-	cream: "#e5e5e1",
-	gray: "rgba(107 ,108 ,106 , 1)",
-	beige: "#b2aca2",
-	headerText: "#ffffff",
-	fontSizeS: "12px",
-	fontSizeM: "14px",
-	fontSizeL: "18px;",
-	fontSizeXL: "22px",
-	fontSizeXXL: "28px",
-	fontSizeXXXL: "48px",
-	deviceScreen: device,
+  keyBlue: "#4a99c3",
+  keyDeepBlue: "#0b547a",
+  black: "#252825",
+  headerBg: "rgba(37, 40, 37,0.5)",
+  blackBg: "#252825",
+  white: "#ffffff",
+  cream: "#e5e5e1",
+  gray: "rgba(107 ,108 ,106 , 1)",
+  beige: "#b2aca2",
+  headerText: "#ffffff",
+  fontSizeS: "12px",
+  fontSizeM: "14px",
+  fontSizeL: "18px;",
+  fontSizeXL: "22px",
+  fontSizeXXL: "28px",
+  fontSizeXXXL: "48px",
+  deviceScreen: device,
 };
 
 //global
@@ -47,6 +48,10 @@ export const GlobalStyles = createGlobalStyle`
     transition: all .5s;
   }
 
+  .bigger{
+    transform:scale(1.5);
+
+  }
 
   .lg-img-wrap > .lg-image {
     max-width: 80% !important;
@@ -81,6 +86,7 @@ export const GlobalStyles = createGlobalStyle`
     a {
       text-decoration: none;
     }
+
 
     /* html, body {
       cursor: none;

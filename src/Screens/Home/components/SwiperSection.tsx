@@ -1,13 +1,13 @@
-import React, { ReactComponentElement, useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination, EffectFade, A11y } from "swiper";
+import { FadeIn, FadeInTopToBottom, FadeInZ } from "../../../Styles/animation";
 import "swiper/swiper-bundle.css";
 import SliderImg1 from "../../../Assets/img/main-swiper-1.png";
 import SliderImg2 from "../../../Assets/img/main-swiper-2.png";
 import SliderImg3 from "../../../Assets/img/main-swiper-3.png";
 import SliderImg4 from "../../../Assets/img/main-swiper-4.png";
-import { FadeIn, FadeInTopToBottom, FadeInZ } from "../../../Styles/animation";
 import { positionType } from "../Home";
 
 SwiperCore.use([Navigation, Pagination, EffectFade, A11y]);
@@ -121,38 +121,34 @@ const SubText = styled.p`
   }
 `;
 
-type SwiperArrTypes = {
+export type SwiperArrTypes = {
   [T in "src" | "alt" | "mainText" | "subText"]: string;
 };
 
-const swiperArr: Array<SwiperArrTypes> = [
+export const swiperArr: Array<SwiperArrTypes> = [
   {
     src: SliderImg1,
     alt: "배너 이미지",
-    mainText: "Iconic by design",
-    subText:
-      "Every detail adds to the iconic Cowboy look for a new performeace standard",
+    mainText: "Inspiration",
+    subText: "수많은 경험으로 부터.",
   },
   {
     src: SliderImg2,
     alt: "배너 이미지",
-    mainText: "Iconic by design",
-    subText:
-      "Every detail adds to the iconic Cowboy look for a new performeace standard",
+    mainText: "Expirence",
+    subText: "수많은 경험으로 부터.",
   },
   {
     src: SliderImg3,
     alt: "배너 이미지",
-    mainText: "Iconic by design",
-    subText:
-      "Every detail adds to the iconic Cowboy look for a new performeace standard",
+    mainText: "Humble",
+    subText: "수많은 경험으로 부터.",
   },
   {
     src: SliderImg4,
     alt: "배너 이미지",
-    mainText: "Iconic by design",
-    subText:
-      "Every detail adds to the iconic Cowboy look for a new performeace standard",
+    mainText: "INSPIRATION",
+    subText: "수많은 경험으로 부터.",
   },
 ];
 
@@ -192,7 +188,6 @@ const SwiperSection: React.FC<SwiperSectionProps> = ({
     <SwiperWrap
       onMouseMove={(e) => mouserOverSwiper(e)}
       onMouseOut={() => SetCustomCursor(false)}
-      role="banner"
     >
       <Swiper
         navigation
