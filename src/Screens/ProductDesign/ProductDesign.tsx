@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { FadeIn, FadeInZ } from "../../Styles/animation";
 
-import { useState } from "react";
-
 import Slider from "react-slick";
 import { swiperArr } from "./productDesignData";
 
@@ -19,7 +17,9 @@ const Container = styled.main`
   .slick-next {
     right: 15px;
   }
-
+  .slick-prev, .slick-next{
+    z-index: 9999;
+  }
   .center .slick-center {
     transform: scale(2);
     z-index: 99999;
@@ -65,21 +65,31 @@ const SwiperInner = styled.div<{ bg?: string; isActive?: boolean }>`
   }
 `;
 
+const Title = styled.h3`
+font-size: 43px;
+color: #fff;
+padding: 20px;
+`
+
 const ProductDesign = () => {
   const settings = {
     className: "center",
-    centerPadding: "100px",
+    centerPadding: "50px",
     centerMode: true,
     infinite: true,
     slidesToShow: 3,
     speed: 500,
     arrows: true,
+    slidesToScroll: 3,
   };
 
   return (
     <Container>
       <Inner>
         <SwiperWrap>
+          <Title>
+            IP Product
+          </Title>
           <Slider {...settings}>
             {swiperArr.map((item, index) => (
               <SwiperItem key={index}>

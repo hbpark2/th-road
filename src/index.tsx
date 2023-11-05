@@ -1,10 +1,5 @@
-import React from "react";
-import ReactDOM, { hydrate, render } from "react-dom";
+import ReactDOM from "react-dom";
 import App from "./Components/Routes/App";
 
-ReactDOM.render(
-	<React.StrictMode>
-		<App />
-	</React.StrictMode>,
-	document.getElementById("wrapper")
+ReactDOM.render(<App />,document.getElementById("wrapper")
 );

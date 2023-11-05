@@ -13,6 +13,7 @@ export const CurrentContext = createContext<ValueType>({
 	menuOpen: false,
 	setMenuOpen: () => {},
 });
+
 export const StoreProvider: React.FC<StoreProviderProp> = ({ children }) => {
 	const [menuOpen, setMenuOpen] = useState<boolean>(false);
 

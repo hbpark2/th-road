@@ -33,7 +33,7 @@ const Meta = ({ data }: MetaProps) => {
 	const width: string | undefined = data.image && (data.width || "1200");
 	const height: string | undefined = data.image && (data.height || "630");
 
-	console.log(description);
+	// console.log(description);
 
 	return (
 		<Helmet titleTemplate="%s">
